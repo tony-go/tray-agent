@@ -2,7 +2,7 @@ mkdir -p dist
 
 cd dist
 
-cmake ..
+cmake .. -G "Xcode" -DCMAKE_BUILD_TYPE=Debug
 
 cmake --build .
 
