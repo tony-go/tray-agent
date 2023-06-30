@@ -1,12 +1,23 @@
 #import <Cocoa/Cocoa.h>
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
+@property (strong) NSStatusItem *statusItem;
 @end
 
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-  NSLog(@"Hello, World!");
+  self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
+  
+  self.statusItem.button.title = @"Hello";
+  self.statusItem.highlightMode = YES;
+  self.statusItem.menu = [[NSMenu alloc] initWithTitle:@"Menu"];
+
+  [self.statusItem.menu addItemWithTitle:@"Quit" action:@selector(terminate:) keyEquivalent:@""];
+}
+
+- (void)terminate:(id)sender {
+    [NSApp terminate:sender];
 }
 
 @end
@@ -16,4 +27,3 @@ int main(int argc, const char* argv []) {
   [NSApplication sharedApplication].delegate = appDelegate;
   return NSApplicationMain(argc, argv);
 }
-

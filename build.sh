@@ -1,12 +1,13 @@
+rm -rf dist
+
 mkdir -p dist
 
 cd dist
 
-cmake .. -G "Xcode" -DCMAKE_BUILD_TYPE=Debug
+cmake .. -G "Xcode"
 
 cmake --build .
 
-open ./TrayAgent.app
-
 cd ..
+
 
