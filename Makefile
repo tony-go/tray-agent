@@ -9,11 +9,11 @@ configure:
 build: configure
 	$(CMAKE) --build dist --config Debug
 
-test: build
+test: dist
 	./test.sh
 
 open: dist
 	./open.sh
 
-clean:
+clean: dist
 	rm -rf dist
