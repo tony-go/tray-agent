@@ -11,3 +11,9 @@ build: configure
 
 test: build
 	./test.sh
+
+open: dist
+	./open.sh
+
+clean:
+	rm -rf dist
