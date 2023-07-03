@@ -15,5 +15,8 @@ test: dist
 open: dist
 	./open.sh
 
+kill:
+	killall TrayAgent
+
 clean: dist
 	rm -rf dist
