@@ -10,7 +10,8 @@
   self.statusItem = [[NSStatusBar systemStatusBar]
       statusItemWithLength:NSVariableStatusItemLength];
 
-  self.statusItem.button.title = @"Hello";
+  NSImage *image = [NSImage imageNamed:@"icon"];
+  self.statusItem.button.image = image;
   self.statusItem.highlightMode = YES;
   self.statusItem.menu = [[NSMenu alloc] initWithTitle:@"Menu"];
 
