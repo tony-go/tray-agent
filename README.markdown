@@ -1,29 +1,48 @@
-# tray-agent
+# Tray-Agent 🚀
 
-This a tray based app for macOS build with CMake outside of Xcode.
+Welcome to Tray-Agent! This project is an exploration of how to build a macOS tray-based
+application without the use of nib, xib, or storyboard files.
+Although the focus here is more on research than application production,
 
-> Xcode is still used for building the project but without storyboard.
+> Though Xcode is used for the build process.
 
-## Requirements
+## 🛠 Requirements
 
-- CMake
-- Xcode
+To embark on this exciting journey, make sure you have the following software installed on your machine:
 
-## Build from sources
+- [CMake](https://cmake.org/install/)
+- [Xcode](https://developer.apple.com/xcode/)
 
-```
+## 🚀 Building from Sources
+
+Building the project is a simple. Run this single command:
+
+```bash
 make
 ```
 
-### Test app
+## 🧪 Testing the App
 
-```
+Test the app:
+
+```bash
 make test
 ```
 
+## 🚁 Trying the App
 
-### Open app
+Initiate the make command:
 
+```bash
+make open
 ```
-./open.sh
+
+Voila! Your app is now up and running!
+
+Need to quit the application? You can use:
+
+```bash
+make kill
 ```
+
+Enjoy the discovery and learning journey with Tray-Agent! 🎉🎉🎉
