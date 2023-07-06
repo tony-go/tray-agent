@@ -17,7 +17,8 @@
       statusItemWithLength:NSVariableStatusItemLength];
 
   // Set image
-  NSImage *image = [NSImage imageNamed:@"icon"];
+  NSImage *image = [NSImage imageNamed:@"icon2.png"];
+  image.size = NSMakeSize(18, 18);
   self.statusItem.button.image = image;
 
   // Create main menu
@@ -35,6 +36,9 @@
 
   // Create items
   [mainMenu addItemWithTitle:@"Go to GitHub" action:nil keyEquivalent:@""];
+  [mainMenu addItemWithTitle:@"Change icon"
+                      action:@selector(changeIcon:)
+               keyEquivalent:@""];
   [mainMenu addItem:[NSMenuItem separatorItem]];
   [mainMenu addItem:settingMenuItem];
   [mainMenu addItem:[NSMenuItem separatorItem]];
@@ -44,6 +48,12 @@
 
   // Set menu
   self.statusItem.menu = mainMenu;
+}
+
+- (void)changeIcon:(id)sender {
+  NSImage *image = [NSImage imageNamed:@"icon"];
+  image.size = NSMakeSize(18, 18);
+  self.statusItem.button.image = image;
 }
 
 - (void)terminate:(id)sender {

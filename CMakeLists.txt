@@ -15,5 +15,9 @@ set(ICON ${CMAKE_CURRENT_SOURCE_DIR}/icon.icns)  # set the path to the icon file
 set_source_files_properties(${ICON} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")  # copy the icon to the Resources directory in the bundle
 target_sources(${PROJECT_NAME} PRIVATE ${ICON})
 
+set(ICON_2 ${CMAKE_CURRENT_SOURCE_DIR}/icon2.png)  # set the path to the icon file
+set_source_files_properties(${ICON_2} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")  # copy the icon to the Resources directory in the bundle
+target_sources(${PROJECT_NAME} PRIVATE ${ICON_2})
+
 target_link_libraries("${PROJECT_NAME}" "-framework Cocoa")
   
