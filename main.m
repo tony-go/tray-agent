@@ -35,13 +35,19 @@
 
   // Create first level items
 
+  NSMenuItem *emptyMenuItemWithTooltip =
+      [[NSMenuItem alloc] initWithTitle:@"Empty item with tooltip"
+                                 action:@selector(changeIcon:)
+                          keyEquivalent:@""];
+  emptyMenuItemWithTooltip.toolTip = @"This is a tooltip";
+
   NSMenuItem *changeIconMenuItem =
       [[NSMenuItem alloc] initWithTitle:@"Change icon"
                                  action:@selector(changeIcon:)
                           keyEquivalent:@""];
 
   NSMenuItem *changeLabelMenuItem =
-      [[NSMenuItem alloc] initWithTitle:@"Change label"
+      [[NSMenuItem alloc] initWithTitle:@"Change label below"
                                  action:@selector(changeLabel:)
                           keyEquivalent:@""];
 
@@ -56,10 +62,14 @@
                                  action:@selector(changeAccessibility:)
                           keyEquivalent:@""];
 
-  // Create items
-  [mainMenu addItemWithTitle:@"Empty Item" action:nil keyEquivalent:@""];
+  // Attach items to main menu
+  [mainMenu addItem:emptyMenuItemWithTooltip];
   [mainMenu addItem:changeIconMenuItem];
+  [mainMenu addItem:[NSMenuItem separatorItem]];
   [mainMenu addItem:changeLabelMenuItem];
+  [mainMenu addItemWithTitle:@"A label"
+                      action:@selector(noop:)
+               keyEquivalent:@""];
   [mainMenu addItem:[NSMenuItem separatorItem]];
   [mainMenu addItem:settingMenuItem];
   [mainMenu addItem:[NSMenuItem separatorItem]];
@@ -77,7 +87,7 @@
   // Really important to disable items individually
   mainMenu.autoenablesItems = NO;
 
-  // Set menu
+  // Attach main menu to status item
   self.statusItem.menu = mainMenu;
 }
 
@@ -85,7 +95,7 @@
 }
 
 - (void)changeAccessibility:(id)sender {
-  NSMenuItem *item = self.statusItem.menu.itemArray[9];
+  NSMenuItem *item = self.statusItem.menu.itemArray[11];
   if ([item isEnabled]) {
     [item setTitle:@"Disabled"];
     [item setEnabled:NO];
@@ -96,7 +106,7 @@
 }
 
 - (void)changeCheck:(id)sender {
-  NSMenuItem *item = self.statusItem.menu.itemArray[6];
+  NSMenuItem *item = self.statusItem.menu.itemArray[8];
   if (item.state == NSControlStateValueOn) {
     [item setState:NSControlStateValueOff];
   } else {
@@ -105,13 +115,12 @@
 }
 
 - (void)changeLabel:(id)sender {
-  NSString *title = self.statusItem.menu.itemArray[2].title;
-  if ([title isEqualToString:@"Change label"]) {
-    title = @"Changed";
+  NSMenuItem *item = self.statusItem.menu.itemArray[4];
+  if ([item.title isEqualToString:@"A label"]) {
+    [item setTitle:@"Another label"];
   } else {
-    title = @"Change label";
+    [item setTitle:@"A label"];
   }
-  self.statusItem.menu.itemArray[2].title = title;
 }
 
 - (void)changeIcon:(id)sender {
