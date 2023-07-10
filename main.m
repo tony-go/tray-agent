@@ -62,6 +62,11 @@
                                  action:@selector(changeAccessibility:)
                           keyEquivalent:@""];
 
+  NSMenuItem *hideMenuItem =
+      [[NSMenuItem alloc] initWithTitle:@"Hide/Expose item below"
+                                 action:@selector(hideItem:)
+                          keyEquivalent:@""];
+
   // Attach items to main menu
   [mainMenu addItem:emptyMenuItemWithTooltip];
   [mainMenu addItem:changeIconMenuItem];
@@ -80,6 +85,11 @@
                       action:@selector(noop:)
                keyEquivalent:@""];
   [mainMenu addItem:[NSMenuItem separatorItem]];
+  [mainMenu addItem:hideMenuItem];
+  [mainMenu addItemWithTitle:@"Visible for now..."
+                      action:@selector(noop:)
+               keyEquivalent:@""];
+  [mainMenu addItem:[NSMenuItem separatorItem]];
   [mainMenu addItemWithTitle:@"Quit"
                       action:@selector(terminate:)
                keyEquivalent:@"q"];
@@ -92,6 +102,15 @@
 }
 
 - (void)noop:(id)sender {
+}
+
+- (void)hideItem:(id)sender {
+  NSMenuItem *item = self.statusItem.menu.itemArray[14];
+  if ([item isHidden]) {
+    [item setHidden:NO];
+  } else {
+    [item setHidden:YES];
+  }
 }
 
 - (void)changeAccessibility:(id)sender {
