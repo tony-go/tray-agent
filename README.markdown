@@ -6,6 +6,15 @@ Although the focus here is more on research than application production,
 
 > Though Xcode is used for the build process.
 
+## Features
+
+* Tooltips for items
+* Change status item icon
+* Change label of items
+* Nested items
+* "Checkbox" items
+* Enable/Disable item
+
 ## 🛠 Requirements
 
 To embark on this exciting journey, make sure you have the following software installed on your machine:
