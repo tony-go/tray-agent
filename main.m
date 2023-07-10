@@ -46,11 +46,31 @@
                           keyEquivalent:@""];
   emptyMenuItemWithTooltip.toolTip = @"This is a tooltip";
 
+  // Idented items
+  NSMenuItem *indentedMenuItem =
+      [[NSMenuItem alloc] initWithTitle:@"Indented item 1"
+                                 action:@selector(changeIcon:)
+                          keyEquivalent:@""];
+  [indentedMenuItem setIndentationLevel:1];
+  NSMenuItem *indentedMenuItem2 =
+      [[NSMenuItem alloc] initWithTitle:@"Indented item 2"
+                                 action:@selector(changeIcon:)
+                          keyEquivalent:@""];
+  [indentedMenuItem2 setIndentationLevel:2];
+  NSMenuItem *indentedMenuItem3 =
+      [[NSMenuItem alloc] initWithTitle:@"Indented item 3"
+                                 action:@selector(changeIcon:)
+                          keyEquivalent:@""];
+  [indentedMenuItem3 setIndentationLevel:3];
+
   // Change icon item
   NSMenuItem *changeIconMenuItem =
       [[NSMenuItem alloc] initWithTitle:@"Change icon"
                                  action:@selector(changeIcon:)
-                          keyEquivalent:@""];
+                          keyEquivalent:@"i"];
+  NSEventModifierFlags changeIconModifierMask =
+      NSEventModifierFlagCommand | NSEventModifierFlagOption;
+  [changeIconMenuItem setKeyEquivalentModifierMask:changeIconModifierMask];
 
   // Change label item
   NSMenuItem *changeLabelMenuItem =
@@ -98,6 +118,7 @@
 
   // Attach items to main menu
   [mainMenu addItem:emptyMenuItemWithTooltip];
+  [mainMenu addItem:[NSMenuItem separatorItem]];
   [mainMenu addItem:changeIconMenuItem];
   [mainMenu addItem:[NSMenuItem separatorItem]];
   [mainMenu addItem:changeLabelMenuItem];
@@ -112,6 +133,10 @@
   [mainMenu addItem:[NSMenuItem separatorItem]];
   [mainMenu addItem:hideMenuItem];
   [mainMenu addItem:itemToHide];
+  [mainMenu addItem:[NSMenuItem separatorItem]];
+  [mainMenu addItem:indentedMenuItem];
+  [mainMenu addItem:indentedMenuItem2];
+  [mainMenu addItem:indentedMenuItem3];
   [mainMenu addItem:[NSMenuItem separatorItem]];
   [mainMenu addItemWithTitle:@"Quit"
                       action:@selector(terminate:)
