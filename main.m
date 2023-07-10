@@ -8,6 +8,10 @@
 // But here the delegate does not own the menu, so we need to keep a strong
 // reference to the status item.
 @property(strong) NSStatusItem *statusItem;
+@property NSInteger labelToChangeTag;
+@property NSInteger itemToHideTag;
+@property NSInteger itemToDisableTag;
+@property NSInteger itemToToggleTag;
 @end
 
 @implementation AppDelegate
@@ -35,60 +39,79 @@
 
   // Create first level items
 
+  // Empty item with tooltip
   NSMenuItem *emptyMenuItemWithTooltip =
       [[NSMenuItem alloc] initWithTitle:@"Empty item with tooltip"
                                  action:@selector(changeIcon:)
                           keyEquivalent:@""];
   emptyMenuItemWithTooltip.toolTip = @"This is a tooltip";
 
+  // Change icon item
   NSMenuItem *changeIconMenuItem =
       [[NSMenuItem alloc] initWithTitle:@"Change icon"
                                  action:@selector(changeIcon:)
                           keyEquivalent:@""];
 
+  // Change label item
   NSMenuItem *changeLabelMenuItem =
       [[NSMenuItem alloc] initWithTitle:@"Change label below"
                                  action:@selector(changeLabel:)
                           keyEquivalent:@""];
+  self.labelToChangeTag = 1;
+  NSMenuItem *labelToChangeMenuItem =
+      [[NSMenuItem alloc] initWithTitle:@"A label"
+                                 action:@selector(noop:)
+                          keyEquivalent:@""];
+  [labelToChangeMenuItem setTag:self.labelToChangeTag];
 
+  // Launch at startup item (checkbox)
+  self.itemToToggleTag = 4;
   NSMenuItem *launchAtStartupMenuItem =
       [[NSMenuItem alloc] initWithTitle:@"Launch at startup"
-                                 action:@selector(changeCheck:)
+                                 action:@selector(toggleItem:)
                           keyEquivalent:@""];
   [launchAtStartupMenuItem setState:NSControlStateValueOn];
+  [launchAtStartupMenuItem setTag:self.itemToToggleTag];
 
+  // Disable item
   NSMenuItem *disableMenuItem =
       [[NSMenuItem alloc] initWithTitle:@"Disable item below"
                                  action:@selector(changeAccessibility:)
                           keyEquivalent:@""];
+  self.itemToDisableTag = 2;
+  NSMenuItem *itemToDisable = [[NSMenuItem alloc] initWithTitle:@"Enabled"
+                                                         action:@selector(noop:)
+                                                  keyEquivalent:@""];
+  [itemToDisable setTag:self.itemToDisableTag];
 
+  // Hide item
   NSMenuItem *hideMenuItem =
       [[NSMenuItem alloc] initWithTitle:@"Hide/Expose item below"
                                  action:@selector(hideItem:)
                           keyEquivalent:@""];
+  self.itemToHideTag = 3;
+  NSMenuItem *itemToHide =
+      [[NSMenuItem alloc] initWithTitle:@"Visible for now..."
+                                 action:@selector(noop:)
+                          keyEquivalent:@""];
+  [itemToHide setTag:self.itemToHideTag];
 
   // Attach items to main menu
   [mainMenu addItem:emptyMenuItemWithTooltip];
   [mainMenu addItem:changeIconMenuItem];
   [mainMenu addItem:[NSMenuItem separatorItem]];
   [mainMenu addItem:changeLabelMenuItem];
-  [mainMenu addItemWithTitle:@"A label"
-                      action:@selector(noop:)
-               keyEquivalent:@""];
+  [mainMenu addItem:labelToChangeMenuItem];
   [mainMenu addItem:[NSMenuItem separatorItem]];
   [mainMenu addItem:settingMenuItem];
   [mainMenu addItem:[NSMenuItem separatorItem]];
   [mainMenu addItem:launchAtStartupMenuItem];
   [mainMenu addItem:[NSMenuItem separatorItem]];
   [mainMenu addItem:disableMenuItem];
-  [mainMenu addItemWithTitle:@"Enabled"
-                      action:@selector(noop:)
-               keyEquivalent:@""];
+  [mainMenu addItem:itemToDisable];
   [mainMenu addItem:[NSMenuItem separatorItem]];
   [mainMenu addItem:hideMenuItem];
-  [mainMenu addItemWithTitle:@"Visible for now..."
-                      action:@selector(noop:)
-               keyEquivalent:@""];
+  [mainMenu addItem:itemToHide];
   [mainMenu addItem:[NSMenuItem separatorItem]];
   [mainMenu addItemWithTitle:@"Quit"
                       action:@selector(terminate:)
@@ -105,7 +128,7 @@
 }
 
 - (void)hideItem:(id)sender {
-  NSMenuItem *item = self.statusItem.menu.itemArray[14];
+  NSMenuItem *item = [self.statusItem.menu itemWithTag:self.itemToHideTag];
   if ([item isHidden]) {
     [item setHidden:NO];
   } else {
@@ -114,7 +137,7 @@
 }
 
 - (void)changeAccessibility:(id)sender {
-  NSMenuItem *item = self.statusItem.menu.itemArray[11];
+  NSMenuItem *item = [self.statusItem.menu itemWithTag:self.itemToDisableTag];
   if ([item isEnabled]) {
     [item setTitle:@"Disabled"];
     [item setEnabled:NO];
@@ -124,8 +147,8 @@
   }
 }
 
-- (void)changeCheck:(id)sender {
-  NSMenuItem *item = self.statusItem.menu.itemArray[8];
+- (void)toggleItem:(id)sender {
+  NSMenuItem *item = [self.statusItem.menu itemWithTag:self.itemToToggleTag];
   if (item.state == NSControlStateValueOn) {
     [item setState:NSControlStateValueOff];
   } else {
@@ -134,7 +157,7 @@
 }
 
 - (void)changeLabel:(id)sender {
-  NSMenuItem *item = self.statusItem.menu.itemArray[4];
+  NSMenuItem *item = [self.statusItem.menu itemWithTag:self.labelToChangeTag];
   if ([item.title isEqualToString:@"A label"]) {
     [item setTitle:@"Another label"];
   } else {
