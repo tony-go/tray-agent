@@ -8,12 +8,14 @@ Although the focus here is more on research than application production,
 
 ## Features
 
-* Tooltips for items
-* Change status item icon
-* Change label of items
-* Nested items
-* "Checkbox" items
-* Enable/Disable item
+* Tooltips: Provide additional context or information for menu items.
+* Dynamic Icons: Change the status item icon based on different conditions.
+* Label Modification: Update the labels of menu items as needed.
+* Nested Items: Support for menu organization through nested items.
+* Checkbox Items: Include interactive "checkbox" items for user preferences.
+* Enable/Disable Items: Control item accessibility dynamically.
+* Indented Items: Improve menu readability with indentation.
+* Complex Key Equivalents: Support for comprehensive keyboard shortcuts. Complex key equivalent
 
 ## 🛠 Requirements
 
