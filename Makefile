@@ -20,3 +20,5 @@ kill:
 
 clean: dist
 	rm -rf dist
+
+full: dist | kill build open
