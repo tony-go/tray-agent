@@ -6,6 +6,8 @@ Although the focus here is more on research than application production,
 
 > Though Xcode is used for the build process.
 
+![](./app.png)
+
 ## Features
 
 * Tooltips: Provide additional context or information for menu items.
