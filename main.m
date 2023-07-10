@@ -86,12 +86,12 @@
 
   // Launch at startup item (checkbox)
   self.itemToToggleTag = 4;
-  NSMenuItem *launchAtStartupMenuItem =
-      [[NSMenuItem alloc] initWithTitle:@"Launch at startup"
+  NSMenuItem *toggleItem =
+      [[NSMenuItem alloc] initWithTitle:@"Toggle me!"
                                  action:@selector(toggleItem:)
                           keyEquivalent:@""];
-  [launchAtStartupMenuItem setState:NSControlStateValueOn];
-  [launchAtStartupMenuItem setTag:self.itemToToggleTag];
+  [toggleItem setState:NSControlStateValueOn];
+  [toggleItem setTag:self.itemToToggleTag];
 
   // Disable item
   NSMenuItem *disableMenuItem =
@@ -126,7 +126,7 @@
   [mainMenu addItem:[NSMenuItem separatorItem]];
   [mainMenu addItem:settingMenuItem];
   [mainMenu addItem:[NSMenuItem separatorItem]];
-  [mainMenu addItem:launchAtStartupMenuItem];
+  [mainMenu addItem:toggleItem];
   [mainMenu addItem:[NSMenuItem separatorItem]];
   [mainMenu addItem:disableMenuItem];
   [mainMenu addItem:itemToDisable];
