@@ -33,6 +33,18 @@
   [settingMenu addItemWithTitle:@"Nested item" action:nil keyEquivalent:@""];
   [settingMenuItem setSubmenu:settingMenu];
 
+  // Create first level items
+
+  NSMenuItem *changeIconMenuItem =
+      [[NSMenuItem alloc] initWithTitle:@"Change icon"
+                                 action:@selector(changeIcon:)
+                          keyEquivalent:@""];
+
+  NSMenuItem *changeLabelMenuItem =
+      [[NSMenuItem alloc] initWithTitle:@"Change label"
+                                 action:@selector(changeLabel:)
+                          keyEquivalent:@""];
+
   NSMenuItem *launchAtStartupMenuItem =
       [[NSMenuItem alloc] initWithTitle:@"Launch at startup"
                                  action:@selector(changeCheck:)
@@ -45,13 +57,9 @@
                           keyEquivalent:@""];
 
   // Create items
-  [mainMenu addItemWithTitle:@"Go to GitHub" action:nil keyEquivalent:@""];
-  [mainMenu addItemWithTitle:@"Change icon"
-                      action:@selector(changeIcon:)
-               keyEquivalent:@""];
-  [mainMenu addItemWithTitle:@"Change label"
-                      action:@selector(changeLabel:)
-               keyEquivalent:@""];
+  [mainMenu addItemWithTitle:@"Empty Item" action:nil keyEquivalent:@""];
+  [mainMenu addItem:changeIconMenuItem];
+  [mainMenu addItem:changeLabelMenuItem];
   [mainMenu addItem:[NSMenuItem separatorItem]];
   [mainMenu addItem:settingMenuItem];
   [mainMenu addItem:[NSMenuItem separatorItem]];
