@@ -116,6 +116,12 @@
                           keyEquivalent:@""];
   [itemToHide setTag:self.itemToHideTag];
 
+  // Quit item
+  NSMenuItem *quitMenuItem =
+      [[NSMenuItem alloc] initWithTitle:@"Quit"
+                                 action:@selector(terminate:)
+                          keyEquivalent:@"q"];
+
   // Attach items to main menu
   [mainMenu addItem:emptyMenuItemWithTooltip];
   [mainMenu addItem:[NSMenuItem separatorItem]];
@@ -138,9 +144,7 @@
   [mainMenu addItem:indentedMenuItem2];
   [mainMenu addItem:indentedMenuItem3];
   [mainMenu addItem:[NSMenuItem separatorItem]];
-  [mainMenu addItemWithTitle:@"Quit"
-                      action:@selector(terminate:)
-               keyEquivalent:@"q"];
+  [mainMenu addItem:quitMenuItem];
 
   // Really important to disable items individually
   mainMenu.autoenablesItems = NO;
